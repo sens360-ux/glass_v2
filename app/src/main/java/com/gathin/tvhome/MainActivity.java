@@ -784,6 +784,11 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             }
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 if (v.getId() == R.id.btnSettings) {
+                    View radio = findViewById(R.id.btnRadio);
+                    if (radio != null && radio.getVisibility() == View.VISIBLE) {
+                        radio.requestFocus();
+                        return true;
+                    }
                     if (btnCandyBox != null && btnCandyBox.getVisibility() == View.VISIBLE) {
                         btnCandyBox.requestFocus();
                         return true;
@@ -794,6 +799,12 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
                     }
                     if (btnWifi != null && btnWifi.getVisibility() == View.VISIBLE) {
                         btnWifi.requestFocus();
+                        return true;
+                    }
+                }
+                if (v.getId() == R.id.btnRadio) {
+                    if (btnCandyBox != null && btnCandyBox.getVisibility() == View.VISIBLE) {
+                        btnCandyBox.requestFocus();
                         return true;
                     }
                 }
@@ -860,6 +871,13 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
                     }
                 }
                 if (v.getId() == R.id.btnCandyBox) {
+                    View radio = findViewById(R.id.btnRadio);
+                    if (radio != null && radio.getVisibility() == View.VISIBLE) {
+                        radio.requestFocus();
+                        return true;
+                    }
+                }
+                if (v.getId() == R.id.btnRadio) {
                     if (btnSettings != null) {
                         btnSettings.requestFocus();
                         return true;
@@ -873,6 +891,8 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         if (btnWifi != null) btnWifi.setOnKeyListener(pillKeys);
         if (btnAssistant != null) btnAssistant.setOnKeyListener(pillKeys);
         if (btnCandyBox != null) btnCandyBox.setOnKeyListener(pillKeys);
+        View radioPill = findViewById(R.id.btnRadio);
+        if (radioPill != null) radioPill.setOnKeyListener(pillKeys);
         if (btnSettings != null) btnSettings.setOnKeyListener(pillKeys);
 
         // Hide the glass when focus leaves the tiles.
